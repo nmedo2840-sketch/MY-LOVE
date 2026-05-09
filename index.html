@@ -18,7 +18,7 @@
 
 body{
     min-height:100vh;
-    overflow-x:hidden;
+    overflow:hidden;
     font-family:'Cairo',sans-serif;
     background:
     radial-gradient(circle at center,
@@ -28,9 +28,10 @@ body{
     display:flex;
     justify-content:center;
     color:white;
+    position:relative;
 }
 
-/* 🌹 خلفية */
+/* 🌹 الخلفية */
 body::before{
     content:'';
     position:absolute;
@@ -47,36 +48,32 @@ body::before{
     to{transform:translateY(-80px);}
 }
 
-/* ✨ glow */
-.glow{
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:radial-gradient(circle,#ff4f8b55,transparent 70%);
-    border-radius:50%;
-    filter:blur(80px);
-}
-
-/* 💖 القلوب */
+/* 💖 القلوب المنتشرة */
 .hearts{
     position:absolute;
     width:100%;
     height:100%;
     overflow:hidden;
+    z-index:0;
 }
 
 .heart{
     position:absolute;
-    bottom:-50px;
     color:#ff8ab5;
-    animation:float linear infinite;
     opacity:0.8;
+    animation:float linear infinite;
 }
 
 @keyframes float{
-    0%{transform:translateY(0) scale(1);opacity:0;}
+    0%{
+        transform:translateY(0) scale(0.8);
+        opacity:0;
+    }
     10%{opacity:1;}
-    100%{transform:translateY(-120vh) scale(1.5);opacity:0;}
+    100%{
+        transform:translateY(-120vh) scale(1.5);
+        opacity:0;
+    }
 }
 
 /* 📦 المحتوى */
@@ -86,13 +83,7 @@ body::before{
     width:95%;
     max-width:1100px;
     text-align:center;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-
-    padding:40px 0;
+    padding-top:40px;
 }
 
 /* 💕 الاسم */
@@ -102,16 +93,15 @@ body::before{
     color:#ffbdd5;
     text-shadow:0 0 10px #ff4f8b,
                 0 0 20px #ff4f8b,
-                0 0 40px #ff4f8b,
-                0 0 80px #ff4f8b;
+                0 0 40px #ff4f8b;
 }
 
-/* خط */
 .line{
     width:420px;
     height:3px;
-    border-radius:20px;
+    margin:auto;
     background:linear-gradient(to right,transparent,#ff8ab5,transparent);
+    margin-bottom:30px;
 }
 
 /* 🕒 */
@@ -120,16 +110,17 @@ body::before{
     font-weight:bold;
     color:#ffd8e6;
     text-shadow:0 0 20px #ff4f8b;
-    line-height:1.4;
 }
 
 .subtitle{
     font-size:22px;
     color:#ffd8e6;
+    margin-top:10px;
 }
 
 /* ⏳ العداد */
 .counter{
+    margin-top:40px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -137,7 +128,7 @@ body::before{
 }
 
 .box{
-    width:180px;
+    width:170px;
     padding:25px;
     border-radius:30px;
     background:rgba(255,255,255,0.05);
@@ -146,84 +137,35 @@ body::before{
 }
 
 .number{
-    font-size:65px;
+    font-size:60px;
     font-weight:bold;
     color:#ff9dc1;
-    text-shadow:0 0 20px #ff4f8b;
 }
 
 .label{
-    font-size:24px;
+    font-size:22px;
     color:#ffd8e6;
 }
 
-/* 💌 الرسالة */
+/* 💌 */
 .message{
+    margin-top:40px;
     padding:15px 40px;
     border-radius:50px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.15);
+    font-size:26px;
     color:#ffd8e6;
-    font-size:28px;
 }
 
-/* ❤️ القلب */
-.big-heart{
-    position:relative;
-    width:250px;
-    height:250px;
-    background:#ff2e63;
-    transform:rotate(-45deg);
-    animation:heartbeat 1.2s infinite;
-    box-shadow:0 0 30px #ff2e63,0 0 60px #ff2e63;
-    margin-top:10px;
-}
-
-.big-heart::before,
-.big-heart::after{
-    content:'';
-    position:absolute;
-    width:250px;
-    height:250px;
-    background:#ff2e63;
-    border-radius:50%;
-}
-
-.big-heart::before{top:-125px;left:0;}
-.big-heart::after{left:125px;top:0;}
-
-@keyframes heartbeat{
-    0%,100%{transform:rotate(-45deg) scale(1);}
-    50%{transform:rotate(-45deg) scale(1.07);}
-}
-
-/* ❤️ النص */
-.love{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) rotate(45deg);
-    font-size:clamp(28px,6vw,55px);
-    font-weight:bold;
-    color:white;
-    text-shadow:0 0 10px white,0 0 30px #fff;
-    white-space:nowrap;
-}
-
-/* 📱 موبايل */
+/* 📱 */
 @media(max-width:768px){
-
 .logo{font-size:60px;}
 .title{font-size:45px;}
 .box{width:140px;}
 .number{font-size:45px;}
 .line{width:250px;}
 .message{font-size:20px;}
-.big-heart{width:170px;height:170px;}
-.big-heart::before,.big-heart::after{width:170px;height:170px;}
-.big-heart::before{top:-85px;}
-.big-heart::after{left:85px;}
-
 }
 
 </style>
@@ -231,7 +173,6 @@ body::before{
 
 <body>
 
-<div class="glow"></div>
 <div class="hearts" id="hearts"></div>
 
 <div class="container">
@@ -274,21 +215,16 @@ body::before{
         كل يوم بيزيد حبي ليكي أكتر من اللي قبله 💖
     </div>
 
-    <div class="big-heart">
-        <div class="love">بحبك</div>
-    </div>
-
 </div>
 
 <script>
 
+/* ⏳ العداد */
 const startDate = new Date("2026-03-25T00:00:00");
 
 function updateCounter(){
-
     let now = new Date();
     let diff = now - startDate;
-
     if(diff < 0) diff = 0;
 
     document.getElementById("days").innerText =
@@ -307,21 +243,23 @@ function updateCounter(){
 setInterval(updateCounter,1000);
 updateCounter();
 
-/* 💖 قلوب */
+/* 💖 قلوب في كل الشاشة */
 function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤";
+
     heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (Math.random()*25 + 15) + "px";
-    heart.style.animationDuration = (Math.random()*5 + 5) + "s";
+    heart.style.top = Math.random()*100 + "vh";
+    heart.style.fontSize = (Math.random()*25 + 10) + "px";
+    heart.style.animationDuration = (Math.random()*6 + 4) + "s";
 
     document.getElementById("hearts").appendChild(heart);
 
     setTimeout(()=>heart.remove(),10000);
 }
 
-setInterval(createHeart,300);
+setInterval(createHeart,200);
 
 </script>
 
