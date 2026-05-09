@@ -18,17 +18,20 @@
 
 body{
     min-height:100vh;
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:auto;
     font-family:'Cairo',sans-serif;
     background:
     radial-gradient(circle at center,
     #6a0019 0%,
     #3d0010 35%,
     #1a0007 100%);
+    position:relative;
     display:flex;
     justify-content:center;
+    align-items:flex-start;
     color:white;
-    position:relative;
+    padding:40px 0;
 }
 
 /* 🌹 الخلفية */
@@ -48,7 +51,18 @@ body::before{
     to{transform:translateY(-80px);}
 }
 
-/* 💖 القلوب المنتشرة */
+/* ✨ الاضاءة */
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#ff4f8b55,transparent 70%);
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:0;
+}
+
+/* 💖 القلوب */
 .hearts{
     position:absolute;
     width:100%;
@@ -59,21 +73,16 @@ body::before{
 
 .heart{
     position:absolute;
+    bottom:-50px;
     color:#ff8ab5;
-    opacity:0.8;
     animation:float linear infinite;
+    opacity:0.8;
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(0) scale(0.8);
-        opacity:0;
-    }
+    0%{transform:translateY(0) scale(1);opacity:0;}
     10%{opacity:1;}
-    100%{
-        transform:translateY(-120vh) scale(1.5);
-        opacity:0;
-    }
+    100%{transform:translateY(-120vh) scale(1.5);opacity:0;}
 }
 
 /* 📦 المحتوى */
@@ -83,7 +92,7 @@ body::before{
     width:95%;
     max-width:1100px;
     text-align:center;
-    padding-top:40px;
+    margin-top:60px;
 }
 
 /* 💕 الاسم */
@@ -91,36 +100,43 @@ body::before{
     font-family:'Great Vibes',cursive;
     font-size:110px;
     color:#ffbdd5;
-    text-shadow:0 0 10px #ff4f8b,
-                0 0 20px #ff4f8b,
-                0 0 40px #ff4f8b;
+    text-shadow:
+    0 0 10px #ff4f8b,
+    0 0 20px #ff4f8b,
+    0 0 40px #ff4f8b,
+    0 0 80px #ff4f8b;
+    margin-bottom:15px;
+    line-height:1.2;
+    padding-top:20px;
 }
 
 .line{
     width:420px;
     height:3px;
     margin:auto;
+    border-radius:20px;
     background:linear-gradient(to right,transparent,#ff8ab5,transparent);
     margin-bottom:30px;
 }
 
-/* 🕒 */
+/* 🕒 العنوان */
 .title{
     font-size:70px;
     font-weight:bold;
     color:#ffd8e6;
     text-shadow:0 0 20px #ff4f8b;
+    line-height:1.4;
 }
 
 .subtitle{
-    font-size:22px;
+    margin-top:15px;
     color:#ffd8e6;
-    margin-top:10px;
+    font-size:22px;
 }
 
 /* ⏳ العداد */
 .counter{
-    margin-top:40px;
+    margin-top:50px;
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
@@ -128,44 +144,105 @@ body::before{
 }
 
 .box{
-    width:170px;
+    width:180px;
     padding:25px;
     border-radius:30px;
     background:rgba(255,255,255,0.05);
     border:1px solid rgba(255,255,255,0.15);
     backdrop-filter:blur(8px);
+    box-shadow:0 0 20px rgba(255,79,139,0.2);
+    transition:0.4s;
+}
+
+.box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px rgba(255,79,139,0.5);
 }
 
 .number{
-    font-size:60px;
+    font-size:65px;
     font-weight:bold;
     color:#ff9dc1;
+    text-shadow:0 0 20px #ff4f8b;
 }
 
 .label{
-    font-size:22px;
+    margin-top:10px;
+    font-size:24px;
     color:#ffd8e6;
 }
 
-/* 💌 */
+/* 💌 الرسالة */
 .message{
-    margin-top:40px;
+    margin:40px auto;
+    width:fit-content;
     padding:15px 40px;
     border-radius:50px;
     background:rgba(255,255,255,0.06);
     border:1px solid rgba(255,255,255,0.15);
-    font-size:26px;
     color:#ffd8e6;
+    font-size:28px;
 }
 
-/* 📱 */
+/* ❤️ القلب */
+.big-heart{
+    position:relative;
+    width:250px;
+    height:250px;
+    background:#ff2e63;
+    margin:50px auto 0;
+    transform:rotate(-45deg);
+    animation:heartbeat 1.2s infinite;
+    box-shadow:
+    0 0 30px #ff2e63,
+    0 0 60px #ff2e63;
+}
+
+.big-heart::before,
+.big-heart::after{
+    content:'';
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:#ff2e63;
+    border-radius:50%;
+}
+
+.big-heart::before{top:-125px;left:0;}
+.big-heart::after{left:125px;top:0;}
+
+@keyframes heartbeat{
+    0%,100%{transform:rotate(-45deg) scale(1);}
+    50%{transform:rotate(-45deg) scale(1.07);}
+}
+
+/* ❤️ النص */
+.love{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    font-size:55px;
+    font-weight:bold;
+    color:white;
+    text-shadow:0 0 10px white,0 0 30px #fff;
+}
+
+/* 📱 الموبايل */
 @media(max-width:768px){
+
 .logo{font-size:60px;}
 .title{font-size:45px;}
 .box{width:140px;}
 .number{font-size:45px;}
 .line{width:250px;}
 .message{font-size:20px;}
+.big-heart{width:170px;height:170px;}
+.big-heart::before,.big-heart::after{width:170px;height:170px;}
+.big-heart::before{top:-85px;}
+.big-heart::after{left:85px;}
+.love{font-size:38px;}
+
 }
 
 </style>
@@ -173,6 +250,7 @@ body::before{
 
 <body>
 
+<div class="glow"></div>
 <div class="hearts" id="hearts"></div>
 
 <div class="container">
@@ -215,16 +293,21 @@ body::before{
         كل يوم بيزيد حبي ليكي أكتر من اللي قبله 💖
     </div>
 
+    <div class="big-heart">
+        <div class="love">بحبك</div>
+    </div>
+
 </div>
 
 <script>
 
-/* ⏳ العداد */
 const startDate = new Date("2026-03-25T00:00:00");
 
 function updateCounter(){
+
     let now = new Date();
     let diff = now - startDate;
+
     if(diff < 0) diff = 0;
 
     document.getElementById("days").innerText =
@@ -243,23 +326,21 @@ function updateCounter(){
 setInterval(updateCounter,1000);
 updateCounter();
 
-/* 💖 قلوب في كل الشاشة */
+/* 💖 القلوب */
 function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤";
-
     heart.style.left = Math.random()*100 + "vw";
-    heart.style.top = Math.random()*100 + "vh";
-    heart.style.fontSize = (Math.random()*25 + 10) + "px";
-    heart.style.animationDuration = (Math.random()*6 + 4) + "s";
+    heart.style.fontSize = (Math.random()*25 + 15) + "px";
+    heart.style.animationDuration = (Math.random()*5 + 5) + "s";
 
     document.getElementById("hearts").appendChild(heart);
 
     setTimeout(()=>heart.remove(),10000);
 }
 
-setInterval(createHeart,200);
+setInterval(createHeart,300);
 
 </script>
 
