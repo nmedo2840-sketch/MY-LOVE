@@ -1,10 +1,443 @@
-    document.getElementById("seconds").innerText = seconds;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Basbosty ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    font-family:'Cairo',sans-serif;
+    background:
+    radial-gradient(circle at center,
+    #6a0019 0%,
+    #3d0010 35%,
+    #1a0007 100%);
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+/* 🌹 الخلفية */
+body::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle,#ff4f8b55 1px,transparent 1px);
+    background-size:60px 60px;
+    opacity:0.25;
+    animation:bgmove 20s linear infinite;
+}
+
+@keyframes bgmove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-80px);
+    }
+}
+
+/* ✨ الاضاءة */
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#ff4f8b55,transparent 70%);
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:0;
+}
+
+/* 💖 القلوب الطايرة */
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    bottom:-50px;
+    color:#ff8ab5;
+    animation:float linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+/* 📦 المحتوى */
+.container{
+    position:relative;
+    z-index:5;
+    width:95%;
+    max-width:1100px;
+    text-align:center;
+}
+
+/* 💕 الاسم */
+.logo{
+    font-family:'Great Vibes',cursive;
+    font-size:110px;
+    color:#ffbdd5;
+    text-shadow:
+    0 0 10px #ff4f8b,
+    0 0 20px #ff4f8b,
+    0 0 40px #ff4f8b,
+    0 0 80px #ff4f8b;
+    margin-bottom:15px;
+}
+
+.line{
+    width:420px;
+    height:3px;
+    margin:auto;
+    border-radius:20px;
+    background:linear-gradient(to right,transparent,#ff8ab5,transparent);
+    margin-bottom:30px;
+}
+
+/* 🕒 العنوان */
+.title{
+    font-size:70px;
+    font-weight:bold;
+    color:#ffd8e6;
+    text-shadow:0 0 20px #ff4f8b;
+    line-height:1.4;
+}
+
+.subtitle{
+    margin-top:15px;
+    color:#ffd8e6;
+    font-size:22px;
+}
+
+/* ⏳ العداد */
+.counter{
+    margin-top:50px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.box{
+    width:180px;
+    padding:25px;
+    border-radius:30px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 20px rgba(255,79,139,0.2);
+    transition:0.4s;
+}
+
+.box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px rgba(255,79,139,0.5);
+}
+
+.number{
+    font-size:65px;
+    font-weight:bold;
+    color:#ff9dc1;
+    text-shadow:0 0 20px #ff4f8b;
+}
+
+.label{
+    margin-top:10px;
+    font-size:24px;
+    color:#ffd8e6;
+}
+
+/* ♾️ */
+.infinity{
+    font-size:120px;
+    margin-top:10px;
+    color:#ffbdd5;
+    text-shadow:
+    0 0 20px #ff4f8b,
+    0 0 40px #ff4f8b;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+/* 💌 الرسالة */
+.message{
+    margin:40px auto;
+    width:fit-content;
+    padding:15px 40px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
+    color:#ffd8e6;
+    font-size:28px;
+    box-shadow:0 0 20px rgba(255,79,139,0.2);
+}
+
+/* ❤️ القلب */
+.big-heart{
+    position:relative;
+    width:250px;
+    height:250px;
+    background:#ff2e63;
+    margin:50px auto 0;
+    transform:rotate(-45deg);
+    animation:heartbeat 1.2s infinite;
+    box-shadow:
+    0 0 30px #ff2e63,
+    0 0 60px #ff2e63;
+}
+
+.big-heart::before,
+.big-heart::after{
+    content:'';
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:#ff2e63;
+    border-radius:50%;
+}
+
+.big-heart::before{
+    top:-125px;
+    left:0;
+}
+
+.big-heart::after{
+    left:125px;
+    top:0;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:rotate(-45deg) scale(1);
+    }
+
+    50%{
+        transform:rotate(-45deg) scale(1.07);
+    }
+}
+
+/* ❤️ النص */
+.love{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    z-index:5;
+    font-size:55px;
+    font-weight:bold;
+    color:white;
+    text-shadow:
+    0 0 10px white,
+    0 0 30px #fff;
+}
+
+/* 📱 الموبايل */
+@media(max-width:768px){
+
+.logo{
+    font-size:70px;
+}
+
+.title{
+    font-size:45px;
+}
+
+.infinity{
+    font-size:80px;
+}
+
+.box{
+    width:140px;
+}
+
+.number{
+    font-size:45px;
+}
+
+.big-heart{
+    width:170px;
+    height:170px;
+}
+
+.big-heart::before,
+.big-heart::after{
+    width:170px;
+    height:170px;
+}
+
+.big-heart::before{
+    top:-85px;
+}
+
+.big-heart::after{
+    left:85px;
+}
+
+.love{
+    font-size:38px;
+}
+
+.line{
+    width:250px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<!-- 💖 القلوب -->
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+
+    <!-- 💕 الاسم -->
+    <div class="logo">
+        Basbosty ❤️
+    </div>
+
+    <div class="line"></div>
+
+    <!-- 🕒 العنوان -->
+    <div class="title">
+        من يوم 25/3/2026 <br>
+        وإلى مالا نهاية ♾️
+    </div>
+
+    <div class="subtitle">
+        ❤️ كل ثانية بتقربني ليكي أكتر ❤️
+    </div>
+
+    <!-- ⏳ العداد -->
+    <div class="counter">
+
+        <div class="box">
+            <div class="number" id="days">0</div>
+            <div class="label">أيام</div>
+        </div>
+
+        <div class="box">
+            <div class="number" id="hours">0</div>
+            <div class="label">ساعات</div>
+        </div>
+
+        <div class="box">
+            <div class="number" id="minutes">0</div>
+            <div class="label">دقائق</div>
+        </div>
+
+        <div class="box">
+            <div class="number" id="seconds">0</div>
+            <div class="label">ثواني</div>
+        </div>
+
+    </div>
+
+    <!-- 💌 -->
+    <div class="message">
+        كل يوم بيزيد حبي ليكي أكتر من اللي قبله 💖
+    </div>
+
+    <!-- ❤️ -->
+    <div class="big-heart">
+
+        <div class="love">
+            بحبك
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* ⏳ التاريخ */
+const startDate = new Date("2026-03-25T00:00:00");
+
+function updateCounter(){
+
+    const now = new Date();
+
+    let diff = now - startDate;
+
+    if(diff < 0){
+        diff = 0;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (diff % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (diff % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
 }
 
 setInterval(updateCounter,1000);
 updateCounter();
 
-/* 💖 قلوب طايرة */
+/* 💖 القلوب */
 function createHeart(){
 
     const heart = document.createElement("div");
@@ -13,13 +446,13 @@ function createHeart(){
 
     heart.innerHTML = "❤";
 
-    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.left = Math.random()*100 + "vw";
 
     heart.style.fontSize = (Math.random()*25 + 15) + "px";
 
     heart.style.animationDuration = (Math.random()*5 + 5) + "s";
 
-    document.body.appendChild(heart);
+    document.getElementById("hearts").appendChild(heart);
 
     setTimeout(()=>{
         heart.remove();
@@ -27,21 +460,6 @@ function createHeart(){
 }
 
 setInterval(createHeart,300);
-
-/* ✨ نجوم */
-const stars = document.getElementById("stars");
-
-for(let i=0;i<120;i++){
-
-    const star = document.createElement("span");
-
-    star.style.top = Math.random()*100 + "%";
-    star.style.left = Math.random()*100 + "%";
-
-    star.style.animationDelay = Math.random()*3 + "s";
-
-    stars.appendChild(star);
-}
 
 </script>
 
