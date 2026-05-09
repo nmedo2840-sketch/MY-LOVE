@@ -151,12 +151,6 @@ body::before{
     border:1px solid rgba(255,255,255,0.15);
     backdrop-filter:blur(8px);
     box-shadow:0 0 20px rgba(255,79,139,0.2);
-    transition:0.4s;
-}
-
-.box:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 30px rgba(255,79,139,0.5);
 }
 
 .number{
@@ -174,7 +168,7 @@ body::before{
 
 /* 💌 الرسالة */
 .message{
-    margin:40px auto;
+    margin:40px auto 10px;
     width:fit-content;
     padding:15px 40px;
     border-radius:50px;
@@ -185,17 +179,20 @@ body::before{
 }
 
 /* ❤️ القلب */
+.big-heart-wrapper{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+}
+
 .big-heart{
     position:relative;
     width:250px;
     height:250px;
     background:#ff2e63;
-    margin:50px auto 0;
     transform:rotate(-45deg);
     animation:heartbeat 1.2s infinite;
-    box-shadow:
-    0 0 30px #ff2e63,
-    0 0 60px #ff2e63;
+    box-shadow:0 0 30px #ff2e63,0 0 60px #ff2e63;
 }
 
 .big-heart::before,
@@ -211,12 +208,6 @@ body::before{
 .big-heart::before{top:-125px;left:0;}
 .big-heart::after{left:125px;top:0;}
 
-@keyframes heartbeat{
-    0%,100%{transform:rotate(-45deg) scale(1);}
-    50%{transform:rotate(-45deg) scale(1.07);}
-}
-
-/* ❤️ النص */
 .love{
     position:absolute;
     top:50%;
@@ -226,6 +217,13 @@ body::before{
     font-weight:bold;
     color:white;
     text-shadow:0 0 10px white,0 0 30px #fff;
+    white-space:nowrap;
+}
+
+/* نبض القلب */
+@keyframes heartbeat{
+    0%,100%{transform:rotate(-45deg) scale(1);}
+    50%{transform:rotate(-45deg) scale(1.07);}
 }
 
 /* 📱 الموبايل */
@@ -293,8 +291,10 @@ body::before{
         كل يوم بيزيد حبي ليكي أكتر من اللي قبله 💖
     </div>
 
-    <div class="big-heart">
-        <div class="love">بحبك</div>
+    <div class="big-heart-wrapper">
+        <div class="big-heart">
+            <div class="love">بحبك</div>
+        </div>
     </div>
 
 </div>
